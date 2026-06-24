@@ -1,6 +1,6 @@
-# Data Dictionary
+# Mutual Fund Analytics Platform - Data Dictionary
 
-This dictionary covers the cleaned datasets in `data/processed/` and the SQLite tables loaded from them.
+This document describes all cleaned datasets used in the Mutual Fund Analytics Platform project. It includes column definitions, data types, business meaning, and source references for each dataset stored in `data/processed/`.
 
 ## 01_fund_master_clean.csv
 
@@ -137,3 +137,18 @@ This dictionary covers the cleaned datasets in `data/processed/` and the SQLite 
 | index_name | TEXT | Benchmark index name | `data/raw/10_benchmark_indices.csv` |
 | close_value | REAL | Closing index value | `data/raw/10_benchmark_indices.csv` |
 
+
+## Dataset Summary
+
+| Dataset | Rows | Columns |
+|----------|------:|------:|
+| 01_fund_master_clean.csv | 40 | 15 |
+| 02_nav_history_clean.csv | 46000 | 3 |
+| 03_aum_by_fund_house_clean.csv | 90 | 5 |
+| 04_monthly_sip_inflows_clean.csv | 48 | 7 |
+| 05_category_inflows_clean.csv | 144 | 3 |
+| 06_industry_folio_count_clean.csv | 21 | 7 |
+| 07_scheme_performance_clean.csv | 40 | 21 |
+| 08_investor_transactions_clean.csv | 32778 | 13 |
+| 09_portfolio_holdings_clean.csv | 322 | 8 |
+| 10_benchmark_indices_clean.csv | 8050 | 3 |

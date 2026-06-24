@@ -51,6 +51,18 @@ The `yoy_growth_pct` gaps are expected because the first comparison periods do n
 | Null dates in cleaned key date columns | 0 |
 | SQLite `dim_date` span | `2022-01-01` to `2026-05-29` |
 
+
+## Database Validation
+
+The following checks were performed after loading data into SQLite:
+
+- Verified all AMFI codes in fact tables exist in `dim_fund`.
+- Verified all dates in fact tables exist in `dim_date`.
+- Verified no NULL foreign keys in `fact_nav`, `fact_transactions`, `fact_performance`, or `fact_aum`.
+- Verified row counts in SQLite match the cleaned CSV source files.
+
+
+
 ## Referential Integrity Checks
 
 | Check | Result |
