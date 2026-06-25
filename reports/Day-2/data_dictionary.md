@@ -37,7 +37,7 @@ This document describes all cleaned datasets used in the Mutual Fund Analytics P
 | date | DATE | Reporting date for the AUM snapshot | `data/raw/03_aum_by_fund_house.csv` |
 | fund_house | TEXT | Fund house name | `data/raw/03_aum_by_fund_house.csv` |
 | aum_lakh_crore | REAL | AUM in lakh crore | `data/raw/03_aum_by_fund_house.csv` |
-| aum_crore | REAL | AUM in crore | `data/raw/03_aum_by_fund_house.csv` |
+| aum_crore | REAL | Total fund house AUM in crore across schemes | `data/raw/03_aum_by_fund_house.csv` |
 | num_schemes | INTEGER | Number of schemes managed by the fund house | `data/raw/03_aum_by_fund_house.csv` |
 
 ## 04_monthly_sip_inflows_clean.csv
@@ -49,7 +49,7 @@ This document describes all cleaned datasets used in the Mutual Fund Analytics P
 | active_sip_accounts_crore | REAL | Active SIP accounts in crore | `data/raw/04_monthly_sip_inflows.csv` |
 | new_sip_accounts_lakh | REAL | New SIP accounts opened in lakh | `data/raw/04_monthly_sip_inflows.csv` |
 | sip_aum_lakh_crore | REAL | SIP AUM in lakh crore | `data/raw/04_monthly_sip_inflows.csv` |
-| yoy_growth_pct | REAL | Year-over-year SIP inflow growth percent | `data/raw/04_monthly_sip_inflows.csv` |
+| yoy_growth_pct | REAL | Year-over-year SIP inflow growth percent; first-year months are blank because no prior-year comparison exists | `data/raw/04_monthly_sip_inflows.csv` |
 | yoy_anomaly | BOOLEAN | Flag for unusually high or low YoY growth | `data/raw/04_monthly_sip_inflows.csv` |
 
 ## 05_category_inflows_clean.csv
@@ -91,7 +91,7 @@ This document describes all cleaned datasets used in the Mutual Fund Analytics P
 | sortino_ratio | REAL | Sortino ratio | `data/raw/07_scheme_performance.csv` |
 | std_dev_ann_pct | REAL | Annualized standard deviation in percent | `data/raw/07_scheme_performance.csv` |
 | max_drawdown_pct | REAL | Maximum drawdown in percent | `data/raw/07_scheme_performance.csv` |
-| aum_crore | REAL | Scheme AUM in crore | `data/raw/07_scheme_performance.csv` |
+| aum_crore | REAL | Individual scheme AUM in crore | `data/raw/07_scheme_performance.csv` |
 | expense_ratio_pct | REAL | Expense ratio in percent | `data/raw/07_scheme_performance.csv` |
 | morningstar_rating | INTEGER | Morningstar star rating | `data/raw/07_scheme_performance.csv` |
 | risk_grade | TEXT | Risk grade band | `data/raw/07_scheme_performance.csv` |

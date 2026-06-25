@@ -4,6 +4,8 @@
 
 The cleaned CSV files loaded into SQLite without row loss. The fact-table join issue was fixed by normalizing dates consistently and using a complete calendar dimension.
 
+Final warehouse checks confirmed that all valid source rows were preserved in the fact tables.
+
 ## AMFI Code Validation
 
 | Dataset | AMFI mismatches vs fund master |
@@ -36,10 +38,10 @@ The cleaned outputs are deduplicated on the keys used in the cleaning step.
 
 | Dataset | Notable missing values |
 |---|---:|
-| 04_monthly_sip_inflows_clean.csv | 12 nulls in `yoy_growth_pct` |
+| 04_monthly_sip_inflows_clean.csv | 12 expected nulls in `yoy_growth_pct` |
 | All other cleaned datasets | 0 nulls in key fields |
 
-The `yoy_growth_pct` gaps are expected because the first comparison periods do not have a prior-year base.
+The `yoy_growth_pct` gaps are expected for January 2022 to December 2022 because those months do not have a prior-year base in the dataset. These values were not filled with zero because zero would incorrectly mean no growth.
 
 ## Date Validation
 
@@ -62,6 +64,22 @@ The following checks were performed after loading data into SQLite:
 - Verified row counts in SQLite match the cleaned CSV source files.
 
 
+## Database Row Counts
+
+| Table | Rows loaded |
+|---|---:|
+| `dim_fund` | 40 |
+| `dim_date` | 1,610 |
+| `fact_nav` | 46,000 |
+| `fact_transactions` | 32,778 |
+| `fact_performance` | 40 |
+| `fact_aum` | 90 |
+| `stg_monthly_sip_inflows` | 48 |
+| `stg_category_inflows` | 144 |
+| `stg_industry_folio_count` | 21 |
+| `stg_portfolio_holdings` | 322 |
+| `stg_benchmark_indices` | 8,050 |
+
 
 ## Referential Integrity Checks
 
@@ -75,4 +93,3 @@ The following checks were performed after loading data into SQLite:
 | Staging tables loaded | 48, 144, 21, 322, 8,050 rows |
 
 Row counts in SQLite match the cleaned source CSVs.
-
