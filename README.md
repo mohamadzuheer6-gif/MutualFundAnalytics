@@ -42,7 +42,7 @@ MutualFundAnalytics/
 ├── dashboard/
 │   └── bluestock_mf.pbix     # PowerBI Dashboard source file
 ├── reports/
-│   ├── final_internship_report.pdf  # Streamlined internship report PDF
+│   ├── Final_Report.pdf             # Streamlined internship report PDF
 │   ├── presentation.pptx     # PowerPoint capstone presentation slide deck
 │   └── supporting_materials/ # Sub-folder holding analytical CSVs and plots
 ├── streamlit_app/            # Streamlit multi-page application
