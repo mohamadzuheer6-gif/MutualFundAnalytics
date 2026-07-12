@@ -16,13 +16,13 @@ An end-to-end financial technology platform to analyze Indian mutual funds. The 
 ## 📂 Project Directory Structure
 
 ```
-bluestock_mf_capstone/
+MutualFundAnalytics/
 ├── data/
 │   ├── raw/                  # Original raw CSV files and API caches
 │   │   └── live_nav/         # Local API cache directory for fetched daily NAV data
 │   ├── processed/            # Cleaned/processed datasets ready for ingestion
 │   └── db/
-│       └── bluestock_mf.db   # Main SQLite analytical database (~7.2 MB)
+│       └── bluestock_mf.db   # Main SQLite analytical database (~8.4 MB)
 ├── notebooks/                # Jupyter Notebooks documenting analytical steps
 │   ├── 01_data_ingestion.ipynb
 │   ├── 02_data_cleaning.ipynb
@@ -36,29 +36,25 @@ bluestock_mf_capstone/
 │   ├── update_database.py    # Loads new dates and NAVs and updates runs metadata
 │   ├── compute_metrics.py    # Calculates mutual fund CAGR, Volatility, Sharpe, and Drawdowns
 │   ├── recommender.py        # CLI Interactive mutual fund recommendation tool
-│   ├── load_sqlite.py        # Performs the initial database schemas loading
-│   └── scratch/              # Diagnostic exploration scripts
+│   └── load_sqlite.py        # Performs the initial database schemas loading
 ├── sql/
-│   ├── schema.sql            # Core database schema (DQL, fact tables, dimensions)
-│   └── queries.sql           # Complex diagnostics and reporting SQL queries
+│   └── schema.sql            # Core database schema (DQL, fact tables, dimensions)
 ├── dashboard/
 │   └── bluestock_mf.pbix     # PowerBI Dashboard source file
 ├── reports/
-│   ├── Final_Report.pdf      # Detailed briefing of the capstone project
-│   ├── Presentation.pptx     # PowerPoint capstone presentation
-│   └── charts/               # Pre-compiled static charts for summaries
+│   ├── final_internship_report.pdf  # Streamlined internship report PDF
+│   ├── presentation.pptx     # PowerPoint capstone presentation slide deck
+│   └── supporting_materials/ # Sub-folder holding analytical CSVs and plots
 ├── streamlit_app/            # Streamlit multi-page application
 │   ├── app.py                # App entry point
 │   ├── config.py             # Global DB path and theme variables
 │   ├── database.py           # Database connections and date format helpers
 │   ├── styles.css            # Global styling overrides
-│   ├── theme.py              # Loads and injects custom styles
-│   ├── components/           # Reusable UI parts (navbar, sidebar, footer)
-│   └── services/             # Core business logic handlers (optimizers, recommenders)
-├── docs/                     # Technical summaries and dictionaries
+│   ├── theme.py              # Injects custom styles and fonts
+│   ├── components/           # Reusable UI components (navbar, sidebar, footer)
+│   └── services/             # Core business logic (optimizers, recommenders)
+├── docs/                     # Technical summaries, dictionaries, and draft records
 ├── logs/                     # Log files including automated etl.log
-├── assets/                   # Shared static assets (fonts, global images)
-├── tests/                    # Unit testing files
 ├── .gitignore
 ├── requirements.txt          # Python library dependencies
 └── LICENSE                   # MIT Open-source License
