@@ -168,7 +168,7 @@ def show() -> None:
         email_configured = is_email_service_configured()
         
         if not email_configured:
-            st.info("ℹ️ Email service is currently unavailable. You can still preview or download the report.")
+            st.info("ℹ️ Running in Mock Mode. Set SMTP credentials in Streamlit Secrets to send real emails.")
             
         dest_email = st.text_input(
             "Recipient Email Address:",
@@ -184,7 +184,7 @@ def show() -> None:
             send_clicked = st.button(
                 "Send Weekly Report",
                 width="stretch",
-                disabled=not email_configured,
+                disabled=False,
                 key="btn_send_weekly"
             )
             
