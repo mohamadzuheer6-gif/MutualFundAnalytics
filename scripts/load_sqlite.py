@@ -5,8 +5,10 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 
 
-DB_PATH = Path("bluestock_mf.db")
-SCHEMA_PATH = Path("sql/schemas.sql")
+BASE_DIR = Path(__file__).resolve().parents[1]
+DB_PATH = BASE_DIR / "data" / "db" / "bluestock_mf.db"
+SCHEMA_PATH = BASE_DIR / "sql" / "schema.sql"
+PROCESSED_DIR = BASE_DIR / "data" / "processed"
 
 
 def parse_date(series, *, fmt=None, dayfirst=False):
@@ -25,21 +27,29 @@ def table_count(conn, table_name):
     ).scalar_one()
 
 
-if DB_PATH.exists():
-    os.remove(DB_PATH)
+try:
+    if DB_PATH.exists():
+        os.remove(DB_PATH)
+except PermissionError:
+    print("Database file locked by another process. Dropping tables dynamically to re-initialize.")
+    temp_engine = create_engine(f"sqlite:///{DB_PATH}")
+    with temp_engine.begin() as conn:
+        conn.execute(text("PRAGMA foreign_keys = OFF"))
+        for tbl in ["fact_nav", "fact_transactions", "fact_performance", "fact_aum", "dim_fund", "dim_date", "stg_monthly_sip_inflows", "stg_category_inflows", "stg_industry_folio_count", "stg_portfolio_holdings", "stg_benchmark_indices", "etl_metadata"]:
+            conn.execute(text(f"DROP TABLE IF EXISTS {tbl}"))
 
 engine = create_engine(f"sqlite:///{DB_PATH}")
 
-fund_df = pd.read_csv("data/processed/01_fund_master_clean.csv")
-nav_df = pd.read_csv("data/processed/02_nav_history_clean.csv")
-aum_df = pd.read_csv("data/processed/03_aum_by_fund_house_clean.csv")
-sip_df = pd.read_csv("data/processed/04_monthly_sip_inflows_clean.csv")
-category_df = pd.read_csv("data/processed/05_category_inflows_clean.csv")
-folio_df = pd.read_csv("data/processed/06_industry_folio_count_clean.csv")
-perf_df = pd.read_csv("data/processed/07_scheme_performance_clean.csv")
-txn_df = pd.read_csv("data/processed/08_investor_transactions_clean.csv")
-hold_df = pd.read_csv("data/processed/09_portfolio_holdings_clean.csv")
-bench_df = pd.read_csv("data/processed/10_benchmark_indices_clean.csv")
+fund_df = pd.read_csv(PROCESSED_DIR / "01_fund_master_clean.csv")
+nav_df = pd.read_csv(PROCESSED_DIR / "02_nav_history_clean.csv")
+aum_df = pd.read_csv(PROCESSED_DIR / "03_aum_by_fund_house_clean.csv")
+sip_df = pd.read_csv(PROCESSED_DIR / "04_monthly_sip_inflows_clean.csv")
+category_df = pd.read_csv(PROCESSED_DIR / "05_category_inflows_clean.csv")
+folio_df = pd.read_csv(PROCESSED_DIR / "06_industry_folio_count_clean.csv")
+perf_df = pd.read_csv(PROCESSED_DIR / "07_scheme_performance_clean.csv")
+txn_df = pd.read_csv(PROCESSED_DIR / "08_investor_transactions_clean.csv")
+hold_df = pd.read_csv(PROCESSED_DIR / "09_portfolio_holdings_clean.csv")
+bench_df = pd.read_csv(PROCESSED_DIR / "10_benchmark_indices_clean.csv")
 
 fund_df = fund_df.drop_duplicates(subset=["amfi_code"]).copy()
 fund_df = fund_df.sort_values("amfi_code").reset_index(drop=True)
