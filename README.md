@@ -2,6 +2,8 @@
 
 An end-to-end financial technology platform to analyze Indian mutual funds. The platform automates data ingestion, cleaning, database loading, ETL synchronization, performance metrics calculation, and provides a multi-page interactive Streamlit analytical dashboard.
 
+🚀 **Live Application Link:** https://bluestock-mf-analytics.streamlit.app/
+
 ---
 
 ## 🛠️ Technology Stack
@@ -125,4 +127,7 @@ The system includes a daily scheduled job named **"Bluestock Daily ETL"**:
   - **Arguments**: `scripts/etl_pipeline.py`
   - **Start in**: `<Absolute path to MutualFundAnalytics>`
 
-This ensures that the mutual fund database remains fully synchronized and that the Streamlit dashboard automatically displays correct, real-time NAV records without manual maintenance.
+This ensures that the mutual fund database remains fully synchronized locally.
+
+> 📝 **Note on Database Synchronization:**  
+> I scheduled my local ETL pipeline to run automatically every day at 8:00 PM on my computer. However, this only updates the database file locally on my machine. Since the live website reads the database file hosted on my GitHub repository (and Streamlit Cloud servers reset periodically), I must push the updated local database to GitHub to show the daily 8:00 PM updates on the live website. I have to push it manually every time because my local computer is isolated from the cloud, and the Streamlit Cloud server has no direct access to read files from my local system.
