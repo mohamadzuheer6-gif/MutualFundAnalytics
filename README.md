@@ -41,6 +41,7 @@ MutualFundAnalytics/
 │   └── load_sqlite.py        # Performs the initial database schemas loading
 ├── sql/
 │   └── schema.sql            # Core database schema (DQL, fact tables, dimensions)
+    |__ queries.sql   
 ├── dashboard/
 │   └── bluestock_mf.pbix     # PowerBI Dashboard source file
 ├── reports/
