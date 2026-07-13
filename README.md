@@ -51,11 +51,26 @@ MutualFundAnalytics/
 ├── streamlit_app/            # Streamlit multi-page application
 │   ├── app.py                # App entry point
 │   ├── config.py             # Global DB path and theme variables
+│   ├── constants.py          # App routes, page mappings, and navigation constants
 │   ├── database.py           # Database connections and date format helpers
+│   ├── helpers.py            # Clean text/HTML utility helpers
 │   ├── styles.css            # Global styling overrides
 │   ├── theme.py              # Injects custom styles and fonts
 │   ├── components/           # Reusable UI components (navbar, sidebar, footer)
-│   └── services/             # Core business logic (optimizers, recommenders)
+│   ├── pages/                # Individual analytical dashboards (12 pages)
+│   │   ├── 1_Dashboard.py
+│   │   ├── 2_NAV_Analytics.py
+│   │   ├── 3_Performance.py
+│   │   ├── 4_Risk_Analytics.py
+│   │   ├── 5_Investor_Analytics.py
+│   │   ├── 6_SIP_Market_Trends.py
+│   │   ├── 7_Portfolio_Holdings.py
+│   │   ├── 8_Monte_Carlo.py
+│   │   ├── 9_Portfolio_Optimizer.py
+│   │   ├── 10_Fund_Recommender.py
+│   │   ├── 11_Reports.py
+│   │   └── 12_Admin.py
+│   └── services/             # Core business logic (optimizers, recommenders, risk models)
 ├── docs/                     # Technical summaries, dictionaries, and draft records
 ├── logs/                     # Log files including automated etl.log
 ├── .gitignore
