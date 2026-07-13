@@ -75,7 +75,7 @@ MutualFundAnalytics/
 ├── logs/                     # Log files including automated etl.log
 ├── .gitignore
 ├── requirements.txt          # Python library dependencies
-└── LICENSE                   # MIT Open-source License
+└── LICENSE                  
 ```
 
 ---
